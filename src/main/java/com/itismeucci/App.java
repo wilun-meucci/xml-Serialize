@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 /**
@@ -14,10 +15,12 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
  */
 public class App 
 {
-    public static void main( String[] args ) throws JsonGenerationException, JsonMappingException, IOException
+    public static void main( String[] args ) throws Exception
     {
         System.out.println( "Hello World!" );
         XmlMapper xml = new XmlMapper();
+        ObjectMapper json = new ObjectMapper();
+
         Alunni a1 = new Alunni();
         a1.setCognome("wilun"); 
         a1.setNome("dawid");
@@ -44,7 +47,7 @@ public class App
         c1.setAula("04-TC");
         c1.setAlunno(alunni);
 
-        xml.writeValue(new File("esempioSerializzazione.xml"), c1);
-        File file = new File("esempioSerializzazione.xml");
+        xml.writeValue(new File("esempioSerializzazioneXML.xml"), c1);
+        json.writeValue(new File("esempioSerializzazioneJSON.json"), c1);
     }
 }
